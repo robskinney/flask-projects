@@ -1,6 +1,10 @@
 from flask import session
 from datetime import datetime
 
+import os
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 import networkx as nx
 from tmdbv3api import Person
 
@@ -8,7 +12,7 @@ from celebguessr.lib.db import updateToday, getToday, bestPerformance
 from celebguessr.lib.randomActorPicker import randomActorPicker
 
 G = nx.read_edgelist(
-    "dataset.edgelist",
+    os.path.join(APP_ROOT,'dataset.edgelist'),
     delimiter='|',
     data=[('movie', str)]
 )

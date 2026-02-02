@@ -5,9 +5,11 @@ import networkx as nx
 from tmdbv3api import Movie, Person, TMDb
 import os
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 from celebguessr.lib.db import getActors, saveActor, getToday, newDate
 
-G = nx.read_edgelist("dataset.edgelist", delimiter='|', data=[('movie', str)])
+G = nx.read_edgelist(os.path.join(APP_ROOT,'dataset.edgelist'), delimiter='|', data=[('movie', str)])
 G = nx.relabel_nodes(G, lambda x: x.lower())
 
 tmdb = TMDb()
