@@ -243,7 +243,8 @@ endblock %} {% block content %}
               {% endif %} {% endif %} Fun Stats:
               <ul>
                 <li>
-                  {{ ((todaywon/todayplayers)*100)|round(2,'floor') }}% of
+                  {% if todayplayers > 0 %} {{ ((todaywon / todayplayers) *
+                  100)|round(2, 'floor') }}% {% else %} 0% {% endif %} of
                   {{todayplayers}} total players guessed today's celebrity
                 </li>
                 {% if todaywon == 0 %}

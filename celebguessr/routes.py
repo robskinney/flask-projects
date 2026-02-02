@@ -24,7 +24,7 @@ def init_session(today):
     session.setdefault('actorGuesses', [])
     session.setdefault('status', True)
     session.setdefault('date', today)
-
+    session.setdefault('hasPlayedToday', False)
 
 def reset_session(today):
     session.update({
@@ -33,7 +33,8 @@ def reset_session(today):
         'guessCount': 0,
         'actorGuesses': [],
         'status': True,
-        'date': today
+        'date': today,
+        'hasPlayedToday': False
     })
 
 
@@ -77,6 +78,10 @@ def index():
     randomActorPicker()
 
     if request.method == 'POST':
+        if not session.get('hasPlayedToday', False):
+            updateToday("players", today, 1)
+            session['hasPlayedToday'] = True
+
         if request.form.get('action') == 'tip':
             result = Game('tip')
         else:
