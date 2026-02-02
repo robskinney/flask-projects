@@ -1,0 +1,51 @@
+{% extends "gorillacarts/layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Customers</title>
+    <div class="topnav">
+        <a href="{{ url_for('gorillacarts.index') }}">Home</a>
+        <a class="active" href="{{ url_for('gorillacarts.customers') }}">Customers</a>
+        <a href="{{ url_for('gorillacarts.products') }}">Products</a>
+        <a href="{{ url_for('gorillacarts.materials') }}">Materials</a>
+        <a href="{{ url_for('gorillacarts.suppliers') }}">Suppliers</a>
+        <a href="{{ url_for('gorillacarts.orders') }}">Orders</a>
+    </div>
+{% endblock %}
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+<form>
+     <H2><u>Customers</u></H2>
+     <TABLE style="border-collapse: collapse;">
+         <TR style="background-color: #D6EEEE;">
+            <TH style="padding: 5px; border: solid 1px #777;">Customer ID</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Name</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">ZIP Code</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Telephone</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">E-Mail</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Category</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Delete</TD>
+        </TH>
+        <!-- EXAMPLES OF THE JINJA LANGUAGE FOR LOOPS-->
+         {% for customer in customers %}
+             <TR>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('gorillacarts.customers_update', id=customer.CustomerID) }}">{{customer.CustomerID}}</a></TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{customer.Name}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{customer.ZIP}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{customer.Telephone}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{customer.Email}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{customer.Category}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('gorillacarts.api_customers_delete', id=customer.CustomerID) }}">Delete</a></TD>
+             </TR>
+         {% endfor %}
+     </TABLE>
+     <br>
+    <a href="/gorillacarts/customers/create" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Create Customer</a>
+</form>
+
+
+
+
+{% endblock %}

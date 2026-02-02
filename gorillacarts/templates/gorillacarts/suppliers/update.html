@@ -1,0 +1,77 @@
+{% extends "gorillacarts/layout.html" %}
+
+{% block head %}
+    <title>Update Supplier</title>
+    <div class="topnav">
+        <a href="{{ url_for('gorillacarts.index') }}">Home</a>
+        <a href="{{ url_for('gorillacarts.customers') }}">Customers</a>
+        <a href="{{ url_for('gorillacarts.products') }}">Products</a>
+        <a href="{{ url_for('gorillacarts.materials') }}">Materials</a>
+        <a class="active" href="{{ url_for('gorillacarts.suppliers') }}">Suppliers</a>
+        <a href="{{ url_for('gorillacarts.orders') }}">Orders</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('gorillacarts.api_suppliers_update', id=supplier.SupplierID) }}" method="post">
+    <table width="100%">
+        <tr>
+            <td colspan="3">
+                <h1>Update Supplier: {{supplier.Name}}</h1>
+            </td>
+        </tr>
+    </table>
+    <table>
+
+    </table>
+            <TABLE style="border-collapse: collapse; width:50%">
+            <tr>
+                <td style="text-align: left">
+                    <input
+                    type="hidden"
+                    autocomplete="off"
+                    autofocus
+                    name="SupplierID"
+                    placeholder="SupplierID"
+                    type="integer"
+                    value="{{supplier.SupplierID}}"
+                    required>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <input
+                    type="hidden"
+                    autocomplete="off"
+                    autofocus
+                    name="Name"
+                    placeholder="Name"
+                    type="text"
+                    value="{{supplier.Name}}"
+                    required>
+                </td>
+            </tr>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">ZIP Code</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="ZIP" placeholder="ZIP" value="{{supplier.ZIP}}" type="text" required></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Telephone</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Telephone" placeholder="Telephone" value="{{supplier.Telephone}}" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Email</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Email" placeholder="Email" value="{{supplier.Email}}" type="text" required></TD>
+             </TR>
+        </TABLE>
+    <br>
+    <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+
+
+    <!-- END Specific to Movie Add -->
+
+
+</form>
+
+{% endblock %}

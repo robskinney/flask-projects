@@ -1,0 +1,60 @@
+{% extends "autotrackr/layout.html" %} {% block title %} AutoTrackr {% endblock
+%} {% block content %}
+<div class="container">
+  {% if error %}
+  <p>ERROR: {{error}}</p>
+  {% endif %}
+  <div class="row">
+    <h2><b>Edit attendee information for </b> {{attendee['name']}}</h2>
+    <form method="POST" name="edit_event">
+      <div class="form-group row">
+        <!-- functionally very similar to the events form, just different labels. Uses information from the attendee dictionary. -->
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            value="{{attendee['name']}}"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            value="{{attendee['email']}}"
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="comment" class="col-sm-2 col-form-label">Comment</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            id="comment"
+            name="comment"
+            value="{{attendee['comment']}}"
+          />
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col text-center">
+          <button class="btn btn-primary" type="submit" value="Submit">
+            Save
+          </button>
+          <button class="btn btn-secondary" type="reset" value="Reset">
+            Reset
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  {% endblock %}
+</div>

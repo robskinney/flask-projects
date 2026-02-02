@@ -1,0 +1,73 @@
+{% extends "gorillacarts/layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Edit Material</title>
+    <div class="topnav">
+        <a href="{{ url_for('gorillacarts.index') }}">Home</a>
+        <a href="{{ url_for('gorillacarts.customers') }}">Customers</a>
+        <a href="{{ url_for('gorillacarts.products') }}">Products</a>
+        <a class="active" href="{{ url_for('gorillacarts.materials') }}">Materials</a>
+        <a href="{{ url_for('gorillacarts.suppliers') }}">Suppliers</a>
+        <a href="{{ url_for('gorillacarts.orders') }}">Orders</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('gorillacarts.api_materials_update', id=material.SWPartNo) }}" method="post">
+    <table width="100%">
+        <tr>
+            <td colspan="3">
+                <h1>Update Material: {{material.SWPartNo}}</h1>
+            </td>
+        </tr>
+    </table>
+    <table>
+
+    </table>
+            <TABLE style="border-collapse: collapse; width:50%">
+            <tr>
+                <td style="text-align: left">
+                    <input
+                    type="hidden"
+                    autocomplete="off"
+                    autofocus
+                    name="SWPartNo"
+                    placeholder="SWPartNo"
+                    type="text"
+                    value="{{material.SWPartNo}}"
+                    required>
+                </td>
+            </tr>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Supplier Part No</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="SupplierPartNo" placeholder="SupplierPartNo" value="{{material.SupplierPartNo}}" type="text" required></TD>
+            </TR>
+            <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Supplier ID</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="SupplierID" placeholder="SupplierID" value="{{material.SupplierID}}" type="integer" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Product Name</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="ProductName" placeholder="ProductName" value="{{material.ProductName}}" type="text" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Price</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="Price" placeholder="Price" value="{{material.Price}}" type="double" required></TD>
+             </TR>
+             <TR>
+                <TH style="padding: 5px; border: solid 1px #777; background-color: #D6EEEE;">Quantity Available</TD>
+                <TD style="padding: 5px; border: solid 1px #777;"><input autocomplete="off" autofocus name="QuantityAvailable" placeholder="Quantity Available" value="{{material.QuantityAvailable}}" type="integer" required></TD>
+             </TR>
+        </TABLE>
+    <br>
+    <input type="submit" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">
+
+
+    <!-- END Specific to Movie Add -->
+
+
+</form>
+
+{% endblock %}

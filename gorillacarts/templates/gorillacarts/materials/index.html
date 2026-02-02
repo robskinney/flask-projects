@@ -1,0 +1,50 @@
+{% extends "gorillacarts/layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Materials</title>
+    <div class="topnav">
+        <a href="{{ url_for('gorillacarts.index') }}">Home</a>
+        <a href="{{ url_for('gorillacarts.customers') }}">Customers</a>
+        <a href="{{ url_for('gorillacarts.products') }}">Products</a>
+        <a class="active" href="{{ url_for('gorillacarts.materials') }}">Materials</a>
+        <a href="{{ url_for('gorillacarts.suppliers') }}">Suppliers</a>
+        <a href="{{ url_for('gorillacarts.orders') }}">Orders</a>
+    </div>
+{% endblock %}
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+<!-- NOTE***** NO ACTION OR METHOD - WE ARE JUST USING THE LINKS BELOW-->
+<form>
+     <H2><u>Materials</u></H2>
+     <TABLE style="border-collapse: collapse;">
+         <TR style="background-color: #D6EEEE;">
+            <TH style="padding: 5px; border: solid 1px #777;">SW Part No.</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Supplier Part No.</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Supplier ID</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Product Name</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Price</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Quantity Available</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Delete</TD>
+        </TH>
+        <!-- EXAMPLES OF THE JINJA LANGUAGE FOR LOOPS-->
+         {% for material in materials %}
+             <TR>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('gorillacarts.materials_update', id=material.SWPartNo) }}">{{material.SWPartNo}}</a></TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{material.SupplierPartNo}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{material.SupplierID}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{material.ProductName}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">${{"{:.2f}".format(material.Price)}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{"{:.2f}".format(material.QuantityAvailable)}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('gorillacarts.api_materials_delete', id=material.SWPartNo) }}">Delete</a></TD>
+             </TR>
+         {% endfor %}
+     </TABLE>
+    <br>
+    <a href="/gorillacarts/materials/create" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Create Material</a>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "gorillacarts/layout.html" %}
+
+<!-- Replace the "placeholder" called head in the parent template with the following -->
+{% block head %}
+    <title>Suppliers</title>
+    <div class="topnav">
+        <a href="{{ url_for('gorillacarts.index') }}">Home</a>
+        <a href="{{ url_for('gorillacarts.customers') }}">Customers</a>
+        <a href="{{ url_for('gorillacarts.products') }}">Products</a>
+        <a href="{{ url_for('gorillacarts.materials') }}">Materials</a>
+        <a class="active" href="{{ url_for('gorillacarts.suppliers') }}">Suppliers</a>
+        <a href="{{ url_for('gorillacarts.orders') }}">Orders</a>
+    </div>
+{% endblock %}
+
+<!-- Replace the "placeholder" called body in the parent template with the following -->
+{% block body %}
+
+<!-- NOTE***** NO ACTION OR METHOD - WE ARE JUST USING THE LINKS BELOW-->
+<form>
+     <H2><u>Suppliers</u></H2>
+     <TABLE style="border-collapse: collapse;">
+         <TR style="background-color: #D6EEEE;">
+            <TH style="padding: 5px; border: solid 1px #777;">Supplier ID</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Supplier Name</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">ZIP Code</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Telephone</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">E-Mail</TD>
+            <TH style="padding: 5px; border: solid 1px #777;">Delete</TD>
+        </TH>
+         {% for supplier in suppliers %}
+             <TR>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('gorillacarts.suppliers_update', id=supplier.SupplierID) }}">{{supplier.SupplierID}}</a></TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{supplier.Name}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{supplier.ZIP}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{supplier.Telephone}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;">{{supplier.Email}}</TD>
+                  <TD style="padding: 5px; border: solid 1px #777;"><a href="{{ url_for('gorillacarts.api_suppliers_delete', id=supplier.SupplierID) }}">Delete</a></TD>
+             </TR>
+         {% endfor %}
+     </TABLE>
+    <br>
+    <a href="/gorillacarts/suppliers/create" style="background-color: #008CBA; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Create Supplier</a>
+
+</form>
+
+{% endblock %}
